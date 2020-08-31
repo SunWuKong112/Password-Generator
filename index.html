@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -16,9 +17,12 @@
         <div class="card-body">
         </div>
       </div>
+      
       <div class="card">
-        <input id="min" placeholder="enter minimum character count">
-        <input id="max" placeholder="enter maximum character count">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="enter minimum character count" aria-label="Recipient's username" aria-describedby="basic-addon2" id="min">
+          <input type="text" class="form-control" placeholder="enter maximum character count" aria-label="Recipient's username" aria-describedby="basic-addon2" id="max">
+        </div>
         <div class="card-header">
           <h2>Generate a Password</h2>
         </div>

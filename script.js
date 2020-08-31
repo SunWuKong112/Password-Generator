@@ -3,23 +3,23 @@ var generateBtn = document.querySelector("#generate");
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 var specialCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&()*+-./:;<=>?@[\]^_~";
 var passwordText = document.querySelector("#password");
-var password = '';
 var sp;
+var randomLength;
 
 
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", function()
 {
-  var max = document.querySelector("#max");
-  var min = document.querySelector("#min");
-  if (!isNaN(max) || !isNaN(min))
+  var max = document.querySelector("#max").value;
+  var min = document.querySelector("#min").value;
+  if (isNaN(max) || isNaN(min))
   {
-    if(!isNaN(max))
+    if(isNaN(max))
     {
       passwordText.textContent = "Invalid maximum number";
     }
-    else if(!isNaN(min))
+    else if(isNaN(min))
     {
       passwordText.textContent = "Invalid minumum number";
     }
@@ -43,8 +43,10 @@ generateBtn.addEventListener("click", function()
 // Write password to the #password input
 function writePassword(max, min, sp)
 {
-  var randomLength = Math.random() * (max - min + 1) + min;
-      
+  console.log(max);
+  console.log(min);
+  randomLength = (Math.round(Math.random() * (parseInt(max) - parseInt(min)))+parseInt(min));
+  console.log(randomLength);
 
   passwordText.textContent = generateCharacters(randomLength, sp);
 }
@@ -52,15 +54,20 @@ function writePassword(max, min, sp)
 //Creates the string which will be output as the password
 function generateCharacters(randomLength, sp)
 {
-  var i;
+  var passwordArray = new Array;
   if(sp)
   {
     //Loop which calls starting with the minimum number of characters until it reaches the maximum
-    while (i = 0, i < randomLength, i++)
+    for (let i = 0; i < randomLength; i++)
     {  
-        //Adds a special character to the string
-        var letterNum = Math.floor(Math.random() * specialCharacters.length)+1;
-        password += specialCharacters.charAt(letterNum);
+      //Adds a special character to the string
+      var letterNum = Math.round(Math.random() * specialCharacters.length)+1;
+      passwordArray.push(specialCharacters.charAt(letterNum));
+    }
+    password = passwordArray.toString();
+    for (let i = -4; i < randomLength; i++)
+    {
+      password = password.replace(',', '');
     }
     console.log(password);
     return password;
@@ -68,13 +75,17 @@ function generateCharacters(randomLength, sp)
   else
   {
     //Loop which calls starting with the minimum number of characters until it reaches the maximum
-    while (i - 0, i < randomLength, i++)
+    for (let i = 0; i < randomLength; i++)
     {
-      var letterNum = Math.floor(Math.random() * alphabet.length)+1;
-      password += alphabet.charAt(letterNum);
+      var letterNum = Math.round(Math.random() * alphabet.length)+1;
+      password.push(alphabet.charAt(letterNum));
+    }
+    password = passwordArray.toString();
+    for (let i = 0; i < randomLength; i++)
+    {
+      password = password.replace(',', '');
     }
     console.log(password);
     return password;
   }
 }
-
